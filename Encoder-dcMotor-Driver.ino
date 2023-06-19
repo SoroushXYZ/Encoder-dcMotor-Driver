@@ -11,7 +11,7 @@ void setup(){
   //For each rotation of the first shaft there are 28 encoder readings.
   //The motor below has a gear ratio of 150.5828
   //It is calibrated to move in degrees.
-  newMotor.cRatio = (150.5828) * (28) * (1.0 * 360); //Gear ratio 
+  newMotor.cRatio = (150.5828) * (28) * (1.0 * 360); //Gear ratio 150.5828:1
 
   //The driver lets you determine a range of positions acceptibale for the motor to stop in.
   //This will make sure the motor will not wiggle at the end of its movement to reach the exact position

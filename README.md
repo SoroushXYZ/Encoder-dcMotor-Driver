@@ -11,7 +11,7 @@ There is a example provided to help with the setup.
 #include <Encoder.h>
 #include "dcMotor.h"
 ```
-3) Construct a dcMotor object using the command like the following
+3) Construct a dcMotor object using a command like the following
 ```C++
 dcMotor newMotor(28, 29, 3, 42, 43); //(in1, in2, pwm, enc1, enc2)
 ````
