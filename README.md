@@ -36,7 +36,7 @@ Method Name  | Description
 Attribute  | Description
 ------------- | -------------
 `double cRatio` | Lets you calibrate your motor with the gear ratio to make it easier to rotate in any metrics you want.(Default is `1` so position is mapped to the encoder reading)
-`int pwm = 255` | Strength of the PWM signal that we send to the driver
+`int pwm` | Strength of the PWM signal that we send to the driver. Default is `255`
 `int targetOffset` | Lets you determine a range of positions acceptibale for the motor to stop in. Since dcMotors are fast we might not be able to stop them exactly wherever we want. This will tell the motor to stop within this number of encoder readings of the target. Default is `15`
 
 ##### Developed by SoroushXYZ <3
