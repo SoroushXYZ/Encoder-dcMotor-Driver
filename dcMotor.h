@@ -70,7 +70,7 @@ class dcMotor {
       digitalWrite(in1, LOW);
       digitalWrite(in2, LOW);
 
-      target = pos;
+      target = read();
     }
 
     void setCurrentPosition(int newPos){
