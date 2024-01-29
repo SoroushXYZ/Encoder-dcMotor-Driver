@@ -66,11 +66,32 @@ class dcMotor {
       analogWrite (pwmPin, 0);
     }
 
+    void freeSpin(int _direction, int _pwm){
+      if(_direction == 1){
+        digitalWrite(in1, HIGH);
+        digitalWrite(in2, LOW);
+      }else if(_direction == 0){
+        analogWrite(pwmPin, _pwm);
+        digitalWrite(in1, HIGH);
+        digitalWrite(in2, LOW);
+      }else if(_direction == -1){
+        digitalWrite(in1, LOW);
+        digitalWrite(in2, LOW);
+      }
+
+      analogWrite(pwmPin, _pwm);
+    }
+
     void stop(){
       digitalWrite(in1, LOW);
       digitalWrite(in2, LOW);
 
       target = read();
+    }
+
+    void pause(){
+      digitalWrite(in1, LOW);
+      digitalWrite(in2, LOW);
     }
 
     void setCurrentPosition(int newPos){
