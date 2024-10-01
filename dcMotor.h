@@ -9,16 +9,17 @@ class dcMotor {
   
   public:
     double cRatio = 1; // Calibration Ratio
+    double nRatio = 0; // Negative Calibration Ratio - 0 If not needed
     int pwm = 255; // pwmPin signal amount
     int targetOffset = 15; // Target offset
     
-    dcMotor(int in1, int in2, int pwm, int enc1, int enc2) : enc(enc1, enc2) {
-      this->in1 = in1;
-      this->in2 = in2;
-      this->pwmPin = pwm;
-      pinMode(in1, OUTPUT);
-      pinMode(in2, OUTPUT);
-      pinMode(pwm, OUTPUT);
+    dcMotor (int A, int B, int P, int enc1, int enc2): enc(enc1, enc2) {
+      in1 = A;
+      in2 = B;
+      pwmPin = P;
+      pinMode (A, OUTPUT);
+      pinMode (B, OUTPUT);
+      pinMode (P, OUTPUT);
     };
     
     void moveTo(double Target){
@@ -72,11 +73,11 @@ class dcMotor {
         digitalWrite(in2, LOW);
       }else if(_direction == 0){
         analogWrite(pwmPin, _pwm);
-        digitalWrite(in1, HIGH);
+        digitalWrite(in1, LOW);
         digitalWrite(in2, LOW);
       }else if(_direction == -1){
         digitalWrite(in1, LOW);
-        digitalWrite(in2, LOW);
+        digitalWrite(in2, HIGH);
       }
 
       analogWrite(pwmPin, _pwm);
@@ -85,6 +86,7 @@ class dcMotor {
     void stop(){
       digitalWrite(in1, LOW);
       digitalWrite(in2, LOW);
+      analogWrite(pwmPin, 0);
 
       target = read();
     }
@@ -92,6 +94,7 @@ class dcMotor {
     void pause(){
       digitalWrite(in1, LOW);
       digitalWrite(in2, LOW);
+      analogWrite(pwmPin, 0);
     }
 
     void setCurrentPosition(int newPos){
@@ -109,7 +112,7 @@ class dcMotor {
     }
 
     double getTarget(){
-      return(target);
+      return(target / cRatio);
     }
 
     bool reachedTarget(){
